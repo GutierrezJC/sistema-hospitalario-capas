@@ -70,24 +70,6 @@ services:
           name: negocio-api
           property: host
 
-  # PHPMyAdmin (opcional)
-  - type: web
-    name: phpmyadmin
-    env: docker
-    image: phpmyadmin/phpmyadmin:latest
-    envVars:
-      - key: PMA_HOST
-        fromService:
-          type: pserv
-          name: mysql-db
-          property: host
-      - key: PMA_PORT
-        value: 3306
-      - key: PMA_USER
-        value: root
-      - key: PMA_PASSWORD
-        sync: false
-
 databases:
   - name: mysql-data
     databaseName: hospital
