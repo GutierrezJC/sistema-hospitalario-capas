@@ -1,0 +1,15 @@
+FROM mysql:8.0
+
+# Configurar variables de entorno (valores vienen de Render)
+ENV MYSQL_DATABASE=hospital
+ENV MYSQL_USER=root
+# MYSQL_ROOT_PASSWORD y MYSQL_PASSWORD se configuran en Render
+
+# Copiar scripts de inicialización
+COPY ./db_dump/ /docker-entrypoint-initdb.d/
+
+# Exponer puerto
+EXPOSE 3306
+
+# Comando por defecto
+CMD ["mysqld"]

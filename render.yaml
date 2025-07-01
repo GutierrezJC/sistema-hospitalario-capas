@@ -1,0 +1,103 @@
+services:
+  # Base de datos MySQL
+  - type: pserv
+    name: mysql-db
+    env: docker
+    dockerfilePath: ./Dockerfile.mysql
+    disk:
+      name: mysql-data
+      mountPath: /var/lib/mysql
+      sizeGB: 1
+    envVars:
+      - key: MYSQL_ROOT_PASSWORD
+        sync: false
+      - key: MYSQL_DATABASE
+        value: hospital
+      - key: MYSQL_USER
+        value: root
+      - key: MYSQL_PASSWORD
+        sync: false
+
+  # API de Datos (PHP)
+  - type: web
+    name: datos-api
+    env: docker
+    dockerfilePath: ./datos/Dockerfile
+    buildCommand: "cd datos && composer install"
+    startCommand: "apache2-foreground"
+    envVars:
+      - key: DB_HOST
+        fromService:
+          type: pserv
+          name: mysql-db
+          property: host
+      - key: DB_PORT
+        value: 3306
+      - key: DB_NAME
+        value: hospital
+      - key: DB_USER
+        value: root
+      - key: DB_PASSW
+        sync: false
+      - key: KEY
+        sync: false
+      - key: TOKEN
+        sync: false
+
+  # API de Negocio (PHP)
+  - type: web
+    name: negocio-api
+    env: docker
+    dockerfilePath: ./negocio/Dockerfile
+    buildCommand: "cd negocio && composer install"
+    startCommand: "apache2-foreground"
+    envVars:
+      - key: DATOS_API_URL
+        fromService:
+          type: web
+          name: datos-api
+          property: url
+      - key: KEY
+        sync: false
+      - key: TOKEN
+        sync: false
+
+  # Frontend (Angular)
+  - type: web
+    name: presentacion-web
+    env: docker
+    dockerfilePath: ./presentacion/hvpresentacion/Dockerfile
+    buildCommand: "cd presentacion/hvpresentacion && npm install && npm run build"
+    startCommand: "nginx -g 'daemon off;'"
+    envVars:
+      - key: API_URL
+        fromService:
+          type: web
+          name: negocio-api
+          property: url
+
+  # PHPMyAdmin (opcional)
+  - type: web
+    name: phpmyadmin
+    env: docker
+    dockerContext: .
+    dockerCommand: |
+      FROM phpmyadmin/phpmyadmin:latest
+      EXPOSE 80
+    envVars:
+      - key: PMA_HOST
+        fromService:
+          type: pserv
+          name: mysql-db
+          property: host
+      - key: PMA_PORT
+        value: 3306
+      - key: PMA_USER
+        value: root
+      - key: PMA_PASSWORD
+        sync: false
+
+databases:
+  - name: mysql-data
+    databaseName: hospital
+    user: root

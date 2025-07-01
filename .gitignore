@@ -46,6 +46,14 @@ testem.log                    # Testem logs
 .DS_Store                     # macOS
 Thumbs.db                     # Windows
 
+# ===== ARCHIVOS SECRETOS (MUY IMPORTANTE) =====
+.env.secrets                  # Variables secretas para despliegue
+.env.local                    # Variables locales
+.env.production              # Variables de producción  
+*.env                        # Cualquier archivo de entorno
+*password*                   # Cualquier archivo con passwords
+db_password.txt             # Archivo de contraseña de BD (si existe)
+
 # ===== PHP/COMPOSER =====
 **/vendor/                     # Dependencias de Composer (se instalan automáticamente)
 composer.lock.backup           # Backups del lock file
