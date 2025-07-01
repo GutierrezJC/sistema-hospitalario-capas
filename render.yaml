@@ -23,8 +23,6 @@ services:
     name: datos-api
     env: docker
     dockerfilePath: ./datos/Dockerfile
-    buildCommand: "cd datos && composer install"
-    startCommand: "apache2-foreground"
     envVars:
       - key: DB_HOST
         fromService:
@@ -49,14 +47,12 @@ services:
     name: negocio-api
     env: docker
     dockerfilePath: ./negocio/Dockerfile
-    buildCommand: "cd negocio && composer install"
-    startCommand: "apache2-foreground"
     envVars:
       - key: DATOS_API_URL
         fromService:
           type: web
           name: datos-api
-          property: url
+          property: host
       - key: KEY
         sync: false
       - key: TOKEN
@@ -67,23 +63,18 @@ services:
     name: presentacion-web
     env: docker
     dockerfilePath: ./presentacion/hvpresentacion/Dockerfile
-    buildCommand: "cd presentacion/hvpresentacion && npm install && npm run build"
-    startCommand: "nginx -g 'daemon off;'"
     envVars:
       - key: API_URL
         fromService:
           type: web
           name: negocio-api
-          property: url
+          property: host
 
   # PHPMyAdmin (opcional)
   - type: web
     name: phpmyadmin
     env: docker
-    dockerContext: .
-    dockerCommand: |
-      FROM phpmyadmin/phpmyadmin:latest
-      EXPOSE 80
+    image: phpmyadmin/phpmyadmin:latest
     envVars:
       - key: PMA_HOST
         fromService:
