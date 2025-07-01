@@ -1,0 +1,78 @@
+<!-- <header class="header-container">
+  <div class="header-content">
+    <div>
+      <h1 class="title">Jefatura Médica</h1>
+      <p class="subtitle">Registro de Visitantes</p>
+    </div>
+    
+    <button mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger class="funct me-4">
+      <mat-icon>person</mat-icon>
+    </button>
+    <span >{{ srvAuth.userActualS().nombre  }}</span>
+    
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button [routerLink]="'/login'"  (click)="logIn()" mat-menu-item>
+        <mat-icon>login</mat-icon>
+        <span>Iniciar Sesion</span>
+      </button>
+      <button (click)="logOut();" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Salir</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Configuración</span>
+      </button>
+    </mat-menu>
+  </div>
+</header> -->
+
+<header class="header-container">
+  <div class="header-content">
+    <!-- Logo y título -->
+    <div class="flex items-center gap-4">
+      <img src="/imagenes/images.png" alt="Logo Hospital" class="logo" />
+      <div>
+        <h1 class="title">Jefatura Médica</h1>
+        <p class="subtitle">Registro de Visitantes</p>
+      </div>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="flex items-center gap-3 funct">
+      <button mat-icon-button matTooltip="Ayuda" class="help-btn">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+
+      <button  mat-icon-button [matMenuTriggerFor]="menu" #menuTrigger>
+        <mat-icon>person</mat-icon>
+      </button>
+      <span class="font-semibold">{{ srvAuth.userActualS().nombre }}</span>
+
+    </div>
+
+    <!-- Menú de usuario -->
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </button>
+      <button  (click)="logIn() "  [routerLink]="'/login'" mat-menu-item>
+        <mat-icon>login</mat-icon>
+        <span>Iniciar Sesión</span>
+      </button>
+      <button (click)="logOut();" mat-menu-item>
+        <mat-icon>logout</mat-icon>
+        <span>Salir</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings</mat-icon>
+        <span>Configuración</span>
+      </button>
+    </mat-menu>
+  </div>
+</header>

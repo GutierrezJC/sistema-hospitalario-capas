@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>FORMULARIO VISITANTE</h2>
+<mat-dialog-content >
+    <form id="miFormulario" [formGroup]="myForm" (ngSubmit)="onGuardar();"> <!--LINEA DE REACTIVIDAD -->
+        <div class="flex flex-col">
+            <mat-form-field appearance="outline" class="w-full mb-3">
+                <mat-label>Identificación</mat-label>
+                <input matInput formControlName="identificacion" required>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="w-full mb-3">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" required>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="w-full mb-3">
+                <mat-label>Apellido 1</mat-label>
+                <input matInput formControlName="apellido1" required>
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="w-full mb-3">
+                <mat-label>Apellido 2</mat-label>
+                <input matInput formControlName="apellido2">
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="w-full mb-3">
+                <mat-label>Teléfono</mat-label>
+                <input matInput formControlName="telefono">
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="w-full mb-3">
+                <mat-label>Correo</mat-label>
+                <input matInput formControlName="correo" type="email">
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" class="w-full mb-3">
+                <mat-label>Sector Laboral</mat-label>
+                <input matInput formControlName="sector_laboral">
+            </mat-form-field>
+        </div>
+    </form>
+
+    
+</mat-dialog-content>
+<mat-dialog-actions>
+    <!-- para los botones -->
+    <button type="submit" form="miFormulario" mat-button><mat-icon>save</mat-icon>Guardar</button><!--  vinvulo el boton proq esta afuera del fromulario-->
+    <button mat-button [mat-dialog-close]="false"><mat-icon>cancel</mat-icon>cerrar</button>
+    <!-- -->
+</mat-dialog-actions>

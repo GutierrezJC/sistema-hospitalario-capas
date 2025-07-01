@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>
+    <mat-icon>{{data.icono}}</mat-icon>
+</h2>
+
+<mat-dialog-content>
+    <p>{{data.texto}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <!-- EL IF ES PARA QUE ESTE DIALOGO SE PUEDA REUTILIZAR Y SIMPRE PREGUNTO PARA QUE LO OCUPAN O QUEN ENVIARON -->
+    @if(data.textoAceptar) {
+        <!-- ESTO DEL RESULTADO DEL MAT RAISED ES LO QUE SE LE EVIA AL PADRE  -->
+        <button mat-raised-button [mat-dialog-close]="true"
+         >{{data.textoAceptar}}
+        </button>
+    }
+    @if(data.textoCancelar) {
+        <button mat-raised-button [mat-dialog-close]="false" cdkFocusInitial>
+            {{data.textoCancelar}}
+        </button>
+    }
+</mat-dialog-actions>

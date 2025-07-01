@@ -1,0 +1,99 @@
+<!-- administrador.html -->
+<mat-card>
+  <div class="p-6 bg-blue-300 border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+    <mat-card-header class="bg-gray-200 h-15 flex justify-center">
+      <mat-card-title class="!font-extrabold text-[1.5rem]">
+        Catálogo Administradores
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table mat-table [dataSource]="dataSource()">
+
+        <!-- Identificación -->
+        <ng-container matColumnDef="identificacion"><!-- LA VINCULACION CON ES TS -->
+          <th mat-header-cell *matHeaderCellDef>Identificación</th><!-- EL NOMBREDE LA COLUMNA -->
+          <td mat-cell *matCellDef="let element">{{element.identificacion}}</td><!-- EL VALOR -->
+        </ng-container>
+        <!-- Nombre -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+        </ng-container>
+        <!-- Apellido 1 -->
+        <ng-container matColumnDef="apellido1">
+          <th mat-header-cell *matHeaderCellDef>Apellido 1</th>
+          <td mat-cell *matCellDef="let element">{{element.apellido1}}</td>
+        </ng-container>
+        <!-- Apellido 2 -->
+        <ng-container matColumnDef="apellido2">
+          <th mat-header-cell *matHeaderCellDef>Apellido 2</th>
+          <td mat-cell *matCellDef="let element">{{element.apellido2}}</td>
+        </ng-container>
+        <!-- Teléfono -->
+        <ng-container matColumnDef="telefono">
+          <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+          <td mat-cell *matCellDef="let element">{{element.telefono}}</td>
+        </ng-container>
+        <!-- Celular -->
+        <ng-container matColumnDef="celular"> 
+          <th mat-header-cell *matHeaderCellDef>Celular</th> 
+          <td mat-cell *matCellDef="let element">{{element.celular}}</td> 
+        </ng-container>
+        <!-- Dirección -->
+        <ng-container matColumnDef="direccion">
+          <th mat-header-cell *matHeaderCellDef>Dirección</th>
+          <td mat-cell *matCellDef="let element">{{element.direccion}}</td>
+        </ng-container>
+        <!-- Correo -->
+        <ng-container matColumnDef="correo">
+          <th mat-header-cell *matHeaderCellDef>Correo</th>
+          <td mat-cell *matCellDef="let element">{{element.correo}}</td>
+        </ng-container>
+
+        <!-- Botonera -->
+        <ng-container matColumnDef="botonera">
+          <th mat-header-cell *matHeaderCellDef style="text-align : center;">
+            <button mat-icon-button (click)="onNuevo();" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                        font-medium rounded-lg text-sm px-9 py-0.5 me-2 mb-2
+                        dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                        dark:focus:ring-blue-800">
+              <mat-icon>
+                add
+              </mat-icon>
+            </button>
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="flex space-around">
+              <button mat-icon-button (click)="onInfo(element.identificacion)"
+                class="flex text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-1 mx-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                <mat-icon>info</mat-icon>
+              </button>
+              <button mat-icon-button (click)="onEditar(element.id_Administrador)"
+                class="flex focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-3 py-1 mx-2  dark:focus:ring-yellow-900">
+                <mat-icon>edit</mat-icon>
+              </button>
+                 <button mat-icon-button (click)="onReset(element.id_Administrador)"
+                class="flex focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-3 py-1 mx-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                <mat-icon>key</mat-icon>
+              </button>
+
+              <button mat-icon-button (click)="onEliminar(element.identificacion)"
+                class="flex focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-1 mx-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas"></tr>
+      </table>
+    </mat-card-content>
+    <mat-card-footer class="bg-gray-200 h-15 flex items-center justify-center">
+      <span class="font-extrabold text-[1.5rem]">
+        footer
+      </span>
+    </mat-card-footer>
+  </div>
+</mat-card>

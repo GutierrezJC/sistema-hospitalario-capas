@@ -1,0 +1,17 @@
+
+
+body .mat-dialog-container::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 8px;
+  background: #f1f1f1;
+}
+
+body .mat-dialog-container::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 8px;
+}
+
+body .mat-dialog-container::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background: #f1f1f1;
+}

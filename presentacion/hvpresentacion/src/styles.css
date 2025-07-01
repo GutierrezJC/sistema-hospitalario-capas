@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "flowbite/dist/flowbite.min.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* */
+.mat-menu-panel {
+  min-width: 500px !important;
+  font-size: 1.15rem !important;
+  padding: 12px 0 !important;
+}
+
+.mat-menu-item {
+  height: 48px !important;
+  font-size: 1.1rem !important;
+  padding-left: 24px !important;
+}
